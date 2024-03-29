@@ -22,11 +22,13 @@
         <section>
             <h2>レシピ一覧</h2>
             <!-- レシピのリスト -->
-            <article>
-                <h3>レシピタイトル</h3>
-                <p>レシピ概要...</p>
-                <%= link_to '詳細を見る', recipe_path(recipe.id) %>
-            </article>
+            <% @recipes.each do |recipe|%>
+                <article>
+                    <h3>レシピタイトル</h3>
+                    <p>レシピ概要...</p>
+                    <%= link_to '詳細を見る', recipe_path(recipe.id) %>
+                </article>
+            <% end %>
             <!-- 他のレシピも同様にリストアップ -->
         </section>
     </main>

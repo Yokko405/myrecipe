@@ -19,12 +19,15 @@
 | title       | string     | null: false                    |
 | description | text       |                                |
 | instructions| text       | null: false                    |
-| image       | string     |                                |
 
 #### アソシエーション
 - belongs_to :user
 - has_many :recipe_ingredients
 - has_many :ingredients, through: :recipe_ingredients
+
+### Active Storage
+このアプリケーションでは、画像のアップロードにはActive Storageを使用します。
+Active Storageの設定を適切に行うことで、画像は自動的に関連付けられ、管理されます。
 
 ### Ingredientsテーブル
 
