@@ -1,24 +1,49 @@
-# README
+## データベース設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Usersテーブル
 
-Things you may want to cover:
+| Column          | Type   | Options                   |
+|-----------------|--------|---------------------------|
+| email           | string | null: false, unique: true |
+| password_digest | string | null: false               |
+| username        | string | null: false               |
 
-* Ruby version
+#### アソシエーション
+- has_many :recipes
 
-* System dependencies
+### Recipesテーブル
 
-* Configuration
+| Column      | Type       | Options                        |
+|-------------|------------|--------------------------------|
+| user_id     | references | null: false, foreign_key: true |
+| title       | string     | null: false                    |
+| description | text       |                                |
+| instructions| text       | null: false                    |
+| image       | string     |                                |
 
-* Database creation
+#### アソシエーション
+- belongs_to :user
+- has_many :recipe_ingredients
+- has_many :ingredients, through: :recipe_ingredients
 
-* Database initialization
+### Ingredientsテーブル
 
-* How to run the test suite
+| Column | Type   | Options     |
+|--------|--------|-------------|
+| name   | string | null: false |
 
-* Services (job queues, cache servers, search engines, etc.)
+#### アソシエーション
+- has_many :recipe_ingredients
+- has_many :recipes, through: :recipe_ingredients
 
-* Deployment instructions
+### RecipeIngredientsテーブル
 
-* ...
+| Column       | Type       | Options                        |
+|--------------|------------|--------------------------------|
+| recipe_id    | references | null: false, foreign_key: true |
+| ingredient_id| references | null: false, foreign_key: true |
+| quantity     | string     | null: false                    |
+
+#### アソシエーション
+- belongs_to :recipe
+- belongs_to :ingredient

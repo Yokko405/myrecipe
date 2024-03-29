@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="gtxdbuR63GOkTo0g0bVd" name="ページ1">
-        <mxGraphModel dx="1280" dy="691" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1032" dy="484" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -147,6 +147,9 @@
                         <mxPoint x="348.8800000000001" y="119.61000000000001" as="sourcePoint"/>
                         <mxPoint x="296" y="278" as="targetPoint"/>
                     </mxGeometry>
+                </mxCell>
+                <mxCell id="49" value="## データベース設計&#10;&#10;&#10;### Usersテーブル&#10;&#10;&#10;| Column          | Type   | Options                   |&#10;|-----------------|--------|---------------------------|&#10;| email           | string | null: false, unique: true |&#10;| password_digest | string | null: false               |&#10;| username        | string | null: false               |&#10;&#10;&#10;#### アソシエーション&#10;- has_many :recipes&#10;&#10;&#10;### Recipesテーブル&#10;&#10;&#10;| Column      | Type       | Options                        |&#10;|-------------|------------|--------------------------------|&#10;| user_id     | references | null: false, foreign_key: true |&#10;| title       | string     | null: false                    |&#10;| description | text       |                                |&#10;| instructions| text       | null: false                    |&#10;| image       | string     |                                |&#10;&#10;&#10;#### アソシエーション&#10;- belongs_to :user&#10;- has_many :recipe_ingredients&#10;- has_many :ingredients, through: :recipe_ingredients&#10;&#10;&#10;### Ingredientsテーブル&#10;&#10;&#10;| Column | Type   | Options     |&#10;|--------|--------|-------------|&#10;| name   | string | null: false |&#10;&#10;&#10;#### アソシエーション&#10;- has_many :recipe_ingredients&#10;- has_many :recipes, through: :recipe_ingredients&#10;&#10;&#10;### RecipeIngredientsテーブル&#10;&#10;&#10;| Column       | Type       | Options                        |&#10;|--------------|------------|--------------------------------|&#10;| recipe_id    | references | null: false, foreign_key: true |&#10;| ingredient_id| references | null: false, foreign_key: true |&#10;| quantity     | string     | null: false                    |&#10;&#10;&#10;#### アソシエーション&#10;- belongs_to :recipe&#10;- belongs_to :ingredient" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-90" y="10" width="330" height="900" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
