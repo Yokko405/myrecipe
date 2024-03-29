@@ -1,0 +1,27 @@
+<!-- recipe_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>レシピ投稿・編集</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>レシピ投稿・編集</h2>
+<form action="submit_recipe.php" method="post" enctype="multipart/form-data">
+    <label for="title">タイトル:</label>
+    <input type="text" id="title" name="title"><br>
+
+    <label for="ingredients">材料:</label>
+    <textarea id="ingredients" name="ingredients"></textarea><br>
+
+    <label for="method">作り方:</label>
+    <textarea id="method" name="method"></textarea><br>
+
+    <label for="image">画像アップロード:</label>
+    <input type="file" id="image" name="image"><br>
+
+    <input type="submit" value="投稿">
+</form>
+</body>
+</html>
