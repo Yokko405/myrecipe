@@ -8,17 +8,25 @@
 <body>
     <h1>レシピ投稿</h1>
     <div class="container">
-        <%= form_for :recipe, url: recipes_path do |f| %>
+        <%= form_with(model: @recipe, local: true) do |form| %>
             <div class="field">
-                <%= f.label :name, "レシピ名" %>
-                <%= f.text_field :name %>
+                <%= f.label :title, "レシピ名" %>
+                <%= f.text_field :title %>
             </div>
             <div class="field">
-                <%= f.label :ingredients, "材料" %>
+                <%= form.label :description, "説明" %>
+                <%= form.text_area :description %>
+            </div>
+            <div class="field">
+                <%= f.label :ingredients, "材料名" %>
                 <%= f.text_area :ingredients %>
             </div>
             <div class="field">
-                <%= f.label :instructions, "調理手順" %>
+              <%= form.label :color_group_id, "色の食品群" %>
+              <%= form.number_field :color_group_id %>
+            </div>
+            <div class="field">
+                <%= f.label :instructions, "作り方" %>
                 <%= f.text_area :instructions %>
             </div>
             <%= f.submit "投稿" %>

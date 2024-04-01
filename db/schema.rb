@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_29_051140) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_01_081738) do
   create_table "recipes", charset: "utf8", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
     t.text "instructions", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.integer "color_group_id", null: false
+    t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|
@@ -32,4 +35,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_29_051140) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "recipes", "users"
 end
