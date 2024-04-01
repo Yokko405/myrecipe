@@ -1,36 +1,5 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>レシピ投稿</title>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-</head>
-<body>
-    <h1>レシピ投稿</h1>
-    <div class="container">
-        <%= form_with(model: @recipe, local: true) do |form| %>
-            <div class="field">
-                <%= f.label :title, "レシピ名" %>
-                <%= f.text_field :title %>
-            </div>
-            <div class="field">
-                <%= form.label :description, "説明" %>
-                <%= form.text_area :description %>
-            </div>
-            <div class="field">
-                <%= f.label :ingredients, "材料名" %>
-                <%= f.text_area :ingredients %>
-            </div>
-            <div class="field">
-              <%= form.label :color_group_id, "色の食品群" %>
-              <%= form.number_field :color_group_id %>
-            </div>
-            <div class="field">
-                <%= f.label :instructions, "作り方" %>
-                <%= f.text_area :instructions %>
-            </div>
-            <%= f.submit "投稿" %>
-        <% end %>
-    </div>
-</body>
-</html>
+<h1>新しいレシピ</h1>
+
+<%= render 'form', recipe: @recipe %>
+
+<%= link_to '一覧に戻る', recipes_path %>

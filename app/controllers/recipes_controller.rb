@@ -53,6 +53,6 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through
     def recipe_params
-      params.require(:recipe).permit(:title, :description, :instructions, :color_group_id).merge(user_id: current_user.id)
+      params.require(:recipe).permit(:title, :description, :instructions, :image, { color_group_ids: [] }).merge(user_id: current_user.id)
     end
 end

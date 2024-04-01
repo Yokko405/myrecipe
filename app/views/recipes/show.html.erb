@@ -1,25 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="recipes/show.css">
+<h1><%= @recipe.title %></h1>
 
-    <title>レシピ詳細 - マイレシピアプリ</title>
-</head>
-<body>
-    <header>
-        <h1>レシピ詳細</h1>
-    </header>
-    <main>
-        <article>
-            <h2>レシピタイトル</h2>
-            <p>作り方...</p>
-            <!-- 栄養情報や材料など、詳細情報を追加 -->
-        </article>
-    </main>
-    <footer>
-        <p>&copy; 2024 マイレシピアプリ</p>
-    </footer>
-</body>
-</html>
+<p>
+  <strong>説明:</strong>
+  <%= @recipe.description %>
+</p>
+
+<p>
+  <strong>作り方:</strong>
+  <%= @recipe.instructions %>
+</p>
+
+<%= link_to '編集', edit_recipe_path(@recipe) %> |
+<%= link_to '一覧に戻る', recipes_path %>
