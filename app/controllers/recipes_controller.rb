@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :check_owner, only: [:edit, :update, :destroy]
 
   # GET /recipes
   def index
@@ -41,14 +42,25 @@ class RecipesController < ApplicationController
 
   # DELETE /recipes/1
   def destroy
-    @recipe.destroy
-    redirect_to recipes_url, notice: 'レシピが正常に削除されました。'
+    if @recipe.destroy
+      flash[:notice] = 'レシピが正常に削除されました。'
+      redirect_to recipes_url
+    else
+      flash[:alert] = 'レシピの削除に失敗しました。'
+      redirect_to recipes_url
+    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions
     def set_recipe
       @recipe = Recipe.find(params[:id])
+    end
+
+    def check_owner
+      unless @recipe.user == current_user
+        redirect_to root_path, alert: 'この操作を実行する権限がありません。'
+      end
     end
 
     # Only allow a list of trusted parameters through
