@@ -13,3 +13,42 @@
  *= require_tree .
  *= require_self
  */
+
+/* 以下に新しいスタイルを追加 */
+/* このファイルは、Railsのアセットパイプラインにより自動的に他のCSSファイルとマージされます */
+
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+.header {
+  background-color: #f4f4f4;
+  padding: 10px;
+  text-align: center;
+}
+
+.user-menu a {
+  margin: 0 10px;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+.recipe-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.recipe-item {
+  width: 30%;
+  margin: 10px;
+  box-shadow: 0 0 10px #ccc;
+}
+
+.recipe-item img {
+  width: 100%;
+  height: auto;
+}

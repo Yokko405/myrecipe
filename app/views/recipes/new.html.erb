@@ -1,33 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>レシピ投稿</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
-    <header>
-        <h1>レシピ投稿</h1>
-    </header>
-    <main>
-        <form action="#" method="post">
-            <div>
-                <label for="title">レシピ名:</label>
-                <input type="text" id="title" name="title">
+    <h1>レシピ投稿</h1>
+    <div class="container">
+        <%= form_for :recipe, url: recipes_path do |f| %>
+            <div class="field">
+                <%= f.label :name, "レシピ名" %>
+                <%= f.text_field :name %>
             </div>
-            <div>
-                <label for="ingredients">材料:</label>
-                <textarea id="ingredients" name="ingredients"></textarea>
+            <div class="field">
+                <%= f.label :ingredients, "材料" %>
+                <%= f.text_area :ingredients %>
             </div>
-            <div>
-                <label for="method">作り方:</label>
-                <textarea id="method" name="method"></textarea>
+            <div class="field">
+                <%= f.label :instructions, "調理手順" %>
+                <%= f.text_area :instructions %>
             </div>
-            <button type="submit">投稿する</button>
-        </form>
-    </main>
-    <footer>
-        <p>&copy; 2024 マイレシピアプリ</p>
-    </footer>
+            <%= f.submit "投稿" %>
+        <% end %>
+    </div>
 </body>
 </html>

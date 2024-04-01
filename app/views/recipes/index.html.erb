@@ -1,44 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="recipes/index.css">
-    <title>マイレシピアプリ - ホーム</title>
+    <title>レシピ一覧</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
-    <header>
-        <h1>マイレシピアプリ</h1>
-        <nav>
-            <ul>
-                <li><%= link_to 'ホーム', root_path %></li>
-                <% if user_signed_in? %>
-                    <li><%= link_to 'プロフィール編集', edit_user_registration_path %></li>
-                    <li><%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %></li>
-                    <li><a href="new_recipe.html">レシピ投稿</a></li>
-                <% else %>
-                    <li><%= link_to 'ログイン', new_user_session_path %></li>
-                    <li><%= link_to '新規登録', new_user_registration_path %></li>
-                <% end %>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section>
-            <h2>レシピ一覧</h2>
-            <!-- レシピのリスト -->
-            <% @recipes.each do |recipe|%>
-                <article>
-                    <h3>レシピタイトル</h3>
-                    <p>レシピ概要...</p>
-                    <%= link_to '詳細を見る', recipe_path(recipe.id) %>
-                </article>
+    <header class="header">
+        <div class="user-menu">
+            <% if user_signed_in? %>
+                <%= link_to 'プロフィール', edit_user_registration_path %>
+                <%= link_to 'レシピ投稿', new_recipe_path %>
+                <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
+            <% else %>
+                <%= link_to 'ログイン', new_user_session_path %>
             <% end %>
-            <!-- 他のレシピも同様にリストアップ -->
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 マイレシピアプリ</p>
-    </footer>
+        </div>
+    </header>
+    <h1>レシピ一覧</h1>
+    <div class="container recipe-list">
+        <% @recipes.each do |recipe| %>
+            <div class="recipe-item">
+                <%= image_tag recipe.image %>
+                <h3><%= link_to recipe.title, recipe %></h3>
+            </div>
+        <% end %>
+    </div>
 </body>
 </html>
