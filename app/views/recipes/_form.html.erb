@@ -49,10 +49,10 @@
   </div>
 
   <div class="field">
-    <%= form.label :color_groups, "食品群" %><br>
+    <h3>食品群</h3>
     <% ColorGroup.all.each do |color_group| %>
-      <%= form.check_box :color_group_ids, { multiple: true }, color_group.id, nil %>
-      <%= form.label "color_group_ids_#{color_group.id}", color_group.name %><br>
+      <%= form.check_box :color_group_ids, { multiple: true, id: "color_group_ids_#{color_group.id}" }, color_group.id, nil %>
+      <%= label_tag "color_group_ids_#{color_group.id}", color_group.name %><br>
     <% end %>
   </div>
 
@@ -61,7 +61,3 @@
   </div>
 <% end %>
 
-<script>
-  // ここにJavaScriptコードを追加。"材料を追加"のリンクをクリックすると、
-  // 新しい材料フィールドを追加する機能を実装します。
-</script>
