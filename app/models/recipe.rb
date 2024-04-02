@@ -1,7 +1,7 @@
 class Recipe < ApplicationRecord
   serialize :color_group_ids, Array
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 255 }
   validates :instructions, presence: true
 
   belongs_to :user

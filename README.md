@@ -16,7 +16,7 @@
 | Column      | Type       | Options                        |
 |-------------|------------|--------------------------------|
 | user_id     | references | null: false, foreign_key: true |
-| title       | string     | null: false                    |
+| title       | string     | null: false, length: { maximum: 255 }                    |
 | description | text       |                                |
 | instructions| text       | null: false                    |
 | color_group_id,| integer       |                                |
