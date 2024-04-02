@@ -42,15 +42,22 @@ class Recipe < ApplicationRecord
   end
 
   # categoryを取得して、不足しているcategoryを充足できるレシピを提案する
+  # def self.suggest_recipes(missing_nutrients)
+  #   if ActiveRecord::Base.connection.adapter_name.downcase.starts_with?('postgresql')
+  #     # PostgreSQLの場合、配列を直接使用できる
+  #     Recipe.where('color_group_ids @> ARRAY[?]::integer[]', missing_nutrients)
+  #   else
+  #     # MySQLやその他のデータベースの場合、文字列として配列を検索する必要がある
+  #     Recipe.all.select { |r| (r.color_group_ids.map(&:to_i) & missing_nutrients).any? }
+  #   end
+  # end
+
   def self.suggest_recipes(missing_nutrients)
-    if ActiveRecord::Base.connection.adapter_name.downcase.starts_with?('postgresql')
-      # PostgreSQLの場合、配列を直接使用できる
-      Recipe.where('color_group_ids @> ARRAY[?]::integer[]', missing_nutrients)
-    else
-      # MySQLやその他のデータベースの場合、文字列として配列を検索する必要がある
-      Recipe.all.select { |r| (r.color_group_ids.map(&:to_i) & missing_nutrients).any? }
+    # 文字列として保存されている color_group_ids から、
+    # 指定された栄養カテゴリーを含むレシピを検索する
+    recipes = Recipe.all.select do |recipe|
+      (recipe.color_group_ids.map(&:to_i) & missing_nutrients).any?
+    end
+    recipes
   end
-  end
-
-
 end
