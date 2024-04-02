@@ -30,4 +30,30 @@ document.addEventListener('turbo:load', () => {
       console.log(document.getElementById('ingredients_table').innerHTML);
     });
   }
+
+
+  // レシピ削除ボタンのイベントリスナーを設定
+  const deleteButton = document.querySelector('.delete-recipe');
+  if (deleteButton) {
+    deleteButton.addEventListener('click', function(e) {
+      console.log('削除ボタンがクリックされました')
+      e.preventDefault();
+      if (confirm('本当に削除しますか？')) {
+        const recipeId = this.dataset.recipeId;
+        fetch(`/recipes/${recipeId}`, {
+          method: 'DELETE',
+          headers: {
+            'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+          }
+        }).then(response => {
+          if (response.ok) {
+            window.location.href = '/recipes'; // 削除後のリダイレクト
+          } else {
+            alert('レシピの削除に失敗しました。');
+          }
+        });
+      }
+    });
+  }
+
 });

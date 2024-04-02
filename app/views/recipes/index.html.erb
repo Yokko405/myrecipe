@@ -28,7 +28,9 @@
             <%= image_tag recipe.image if recipe.image.attached? %>
             <h3><%= link_to recipe.title, recipe %></h3>
             <%= link_to '編集', edit_recipe_path(recipe) %>
-            <%= link_to '削除', recipe, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+            <%= link_to '削除', recipe_path(recipe), method: :delete, data: { turbo_confirm: '本当に削除しますか？', turbo_method: :delete } %>
+
+
         </div>
         </li>
     <% end %>
