@@ -1,5 +1,15 @@
 <h1><%= @recipe.title %></h1>
 <p><%= @recipe.description %></p>
+
+<div class="field">
+  <h3>食品群</h3>
+  <% ColorGroup.all.each do |color_group| %>
+    <%= check_box_tag "color_group_ids_#{color_group.id}",
+      color_group.id, @recipe.color_group_ids.include?(color_group.id.to_s), disabled: true %>
+    <%= label_tag "color_group_ids_#{color_group.id}", color_group.name %><br>
+  <% end %>
+</div>
+
 <h2>材料</h2>
 <ul>
   <% @recipe.ingredients.each do |ingredient| %>
