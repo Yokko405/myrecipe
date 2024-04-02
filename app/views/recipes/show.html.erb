@@ -6,8 +6,16 @@
     <li><%= ingredient.name %></li> - <%= ingredient.quantity %></li>
   <% end %>
 </ul>
+
 <h2>調理手順</h2>
 <p><%= @recipe.instructions %></p>
+
+<h3>不足している栄養素を補うおすすめのレシピ</h3>
+<% @suggested_recipes.each do |recipe| %>
+  <div>
+    <%= link_to recipe.title, recipe_path(recipe) %>
+  </div>
+<% end %>
 
 <%= link_to '編集', edit_recipe_path(@recipe) %>
 <%= link_to '一覧に戻る', recipes_path, class: 'btn btn-primary' %>

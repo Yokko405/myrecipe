@@ -13,6 +13,8 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1
   def show
+    @missing_nutrients = @recipe.missing_nutrient_categories
+  @suggested_recipes = Recipe.suggest_recipes(@missing_nutrients)
   end
 
   # GET /recipes/new
@@ -67,6 +69,11 @@ class RecipesController < ApplicationController
       unless @recipe.user == current_user
         redirect_to root_path, alert: 'この操作を実行する権限がありません。'
       end
+    end
+
+    def suggest_recipes(missing_nutrients)
+      # 不足している栄養カテゴリーに対応するレシピを検索
+      Recipe.where('color_group_ids @> ARRAY[?]::integer[]', missing_nutrients).limit(5)
     end
 
     # Only allow a list of trusted parameters through
