@@ -31,7 +31,11 @@
     </thead>
     <tbody>
       <%= form.fields_for :ingredients do |ingredient_form| %>
-        <%= render 'ingredient_fields', f: ingredient_form %>
+        <tr>
+          <td><%= ingredient_form.text_field :name, placeholder: "材料名" %></td>
+          <td><%= ingredient_form.text_field :quantity, placeholder: "分量" %></td>
+          <td><%= link_to '削除', '#', class: "remove_fields" %></td>
+        </tr>
       <% end %>
     </tbody>
   </table>
@@ -60,4 +64,3 @@
     <%= form.submit %>
   </div>
 <% end %>
-

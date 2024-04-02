@@ -3,7 +3,7 @@
 <h2>材料</h2>
 <ul>
   <% @recipe.ingredients.each do |ingredient| %>
-    <li><%= ingredient.name %></li>
+    <li><%= ingredient.name %></li> - <%= ingredient.quantity %></li>
   <% end %>
 </ul>
 <h2>調理手順</h2>
