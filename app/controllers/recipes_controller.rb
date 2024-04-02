@@ -9,15 +9,18 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1
   def show
+    @recipe.ingredients.build if @recipe.ingredients.empty?
   end
 
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+    @recipe.ingredients.build # 材料の空オブジェクトを生成
   end
 
   # GET /recipes/1/edit
   def edit
+    @recipe.ingredients.build if @recipe.ingredients.empty?
   end
 
   # POST /recipes
@@ -65,6 +68,13 @@ class RecipesController < ApplicationController
 
     # Only allow a list of trusted parameters through
     def recipe_params
-      params.require(:recipe).permit(:title, :description, :instructions, :image, { color_group_ids: [] }).merge(user_id: current_user.id)
+      params.require(:recipe).permit(
+        :title,
+        :description,
+        :instructions,
+        :image,
+        { color_group_ids: [] },
+        ingredients_attributes: [:id, :name, :quantity, :_destroy]
+      ).merge(user_id: current_user.id)
     end
 end
