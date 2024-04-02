@@ -8,6 +8,15 @@
             <%= link_to 'ログイン', new_user_session_path %>
         <% end %>
     </div>
+    <%= form_with url: recipes_path, method: :get do |form| %>
+        <%= form.label :keyword, 'キーワード' %>
+        <%= form.text_field :keyword %>
+        
+        <%= form.label :color_group_id, 'カテゴリー' %>
+        <%= form.select :color_group_id, ColorGroup.all.map { |c| [c.name, c.id] }, include_blank: true %>
+        <%= form.submit '検索' %>
+    <% end %>
+
 </header>
 <h1>レシピ一覧</h1>
 

@@ -1,14 +1,13 @@
 <h1><%= @recipe.title %></h1>
+<p><%= @recipe.description %></p>
+<h2>材料</h2>
+<ul>
+  <% @recipe.ingredients.each do |ingredient| %>
+    <li><%= ingredient.name %></li>
+  <% end %>
+</ul>
+<h2>調理手順</h2>
+<p><%= @recipe.instructions %></p>
 
-<p>
-  <strong>説明:</strong>
-  <%= @recipe.description %>
-</p>
-
-<p>
-  <strong>作り方:</strong>
-  <%= @recipe.instructions %>
-</p>
-
-<%= link_to '編集', edit_recipe_path(@recipe) %> |
-<%= link_to '一覧に戻る', recipes_path %>
+<%= link_to '編集', edit_recipe_path(@recipe) %>
+<%= link_to '一覧に戻る', recipes_path, class: 'btn btn-primary' %>

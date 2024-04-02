@@ -21,6 +21,10 @@ body {
   font-family: 'Arial', sans-serif;
 }
 
+form {
+  color: black; /* テキストの色を黒に設定 */
+}
+
 .header {
   background-color: #f4f4f4;
   padding: 10px;

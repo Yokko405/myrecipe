@@ -4,12 +4,15 @@ class RecipesController < ApplicationController
 
   # GET /recipes
   def index
-    @recipes = Recipe.all
+    if params[:keyword].present? || params[:color_group_id].present?
+      @recipes = Recipe.search(params[:keyword], params[:color_group_id])
+    else
+      @recipes = Recipe.all
+    end
   end
 
   # GET /recipes/1
   def show
-    @recipe.ingredients.build if @recipe.ingredients.empty?
   end
 
   # GET /recipes/new
