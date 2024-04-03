@@ -20,19 +20,22 @@
 </header>
 <h1>レシピ一覧</h1>
 
-<div class="container recipe-list">
-<ul>
-    <% @recipes.each do |recipe| %>
-        <li>
-        <div class="recipe-item">
-            <%= image_tag recipe.image if recipe.image.attached? %>
-            <h3><%= link_to recipe.title, recipe %></h3>
-            <%= link_to '編集', edit_recipe_path(recipe) %>
-            <%= link_to '削除', recipe_path(recipe), method: :delete, data: { turbo_confirm: '本当に削除しますか？', turbo_method: :delete } %>
 
-
-        </div>
-        </li>
-    <% end %>
-</ul>
+<div class="container">
+    <ul>
+        <% @recipes.each do |recipe| %>
+            <li>
+                <div class="recipe-item">
+                    <% if recipe.image.attached? %>
+                        <%= image_tag recipe.image %>
+                    <% else %>
+                        <%= image_tag 'default-salad.png', alt: 'サンプルサラダ画像' %>
+                    <% end %>
+                    <h3><%= link_to recipe.title, recipe %></h3>
+                    <%= link_to '編集', edit_recipe_path(recipe) %>
+                    <%= link_to '削除', recipe_path(recipe), method: :delete, data: { turbo_confirm: '本当に削除しますか？', turbo_method: :delete } %>
+                </div>
+            </li>
+        <% end %>
+    </ul>
 </div>

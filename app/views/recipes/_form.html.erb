@@ -52,17 +52,23 @@
     <%= form.file_field :image %>
   </div>
 
-  <div class="field">
-    <h3>食品群</h3>
-    <% ColorGroup.all.each do |color_group| %>
-      <%= form.check_box :color_group_ids, {
-          multiple: true,
-          id: "color_group_ids_#{color_group.id}",
-          checked: @recipe.color_group_ids.include?(color_group.id.to_s)
-        }, color_group.id, nil %>
-      <%= label_tag "color_group_ids_#{color_group.id}", color_group.name %><br>
-    <% end %>
+<div class="food-group-container">
+  <div class="food-group-checkboxes">
+    <%# ここに食品群のチェックボックスのコードが続きます %>
+    <div class="field">
+      <h3>食品群</h3>
+      <% ColorGroup.all.each do |color_group| %>
+        <%= form.check_box :color_group_ids, { multiple: true, id: "color_group_ids_#{color_group.id}" }, color_group.id, nil %>
+        <%= label_tag "color_group_ids_#{color_group.id}", color_group.name %><br>
+      <% end %>
+    </div>
   </div>
+  <div class="food-group-image">
+    <%= image_tag '3-color-food-groups.jpg', alt: '3色の食品群' %>
+  </div>
+</div>
+
+
 
   <div>
     <%= form.submit %>

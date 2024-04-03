@@ -19,8 +19,12 @@ class RecipesController < ApplicationController
 
   # GET /recipes/new
   def new
-    @recipe = Recipe.new
-    @recipe.ingredients.build # 材料の空オブジェクトを生成
+    if signed_in?
+      @recipe = Recipe.new
+      @recipe.ingredients.build # 材料の空オブジェクトを生成
+    else
+      redirect_to root_path, alert: "ログインが必要です。"
+    end
   end
 
   # GET /recipes/1/edit
