@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Myrecipe</title>
+    <title>マイレシピアプリ</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,6 +10,11 @@
     <%= javascript_importmap_tags %>
   </head>
 
+<header class="header">
+  <div class="container">
+    <%= link_to "マイレシピアプリ", root_path, class: "logo" %>
+  </div>
+</header>
 
   <body>
     <% flash.each do |type, message| %>

@@ -58,10 +58,21 @@ article p {
   background-color: #0056b3;
 }
 
-/* 画像スタイル */
+
+/* 画像のスタイル */
+.recipe-container {
+  float: left; /* 画像を左寄せにする */
+  padding: 0; /* 余白をなくす */
+  margin: 0; /* 外余白をなくす */
+}
+
+/* 画像のスタイル */
 .recipe-image {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto 20px;
+  margin: 0;
+  max-width: 100%; /* 画像がコンテナの幅を超えないように */
+  max-height: 250px; /* 画像の高さが自然な比率を保つように */
+}
+
+h1, p {
+  margin: 0; /* 余白をリセットする */
 }

@@ -1,3 +1,11 @@
+.header .logo {
+  font-size: 24px; /* ロゴのサイズを大きくする */
+  color: #333; /* ロゴの色 */
+  text-decoration: none; /* アンダーラインを消す */
+  font-weight: bold; /* フォントを太くする */
+  /* さらにスタイリングが必要な場合はここに追加 */
+}
+
 /* 基本スタイル */
 body {
   font-family: 'Arial', sans-serif;
@@ -20,6 +28,14 @@ body {
 
 .header .user-menu {
   margin-bottom: 15px;
+}
+
+.user-menu .menu-link {
+  margin-right: 25px; /* 右側に15pxのマージンを設定 */
+}
+
+.user-menu .menu-link:last-child {
+  margin-right: 0; /* 最後の要素はマージンを0にする */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -70,11 +86,11 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
-  margin-bottom: 20px;
+  margin: 20px 20px;
   padding: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   text-align: center;
-  width: 100%; /* li要素の100%の幅を取るように設定 */
+  width: auto;
 }
 
 .recipe-item h3 {
@@ -90,6 +106,13 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 8px; /* 角を丸くする */
 }
 
+
+/* 画像の後の要素がfloatを解除するためのクリアフィックス */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 /* ボタンとフォームのスタイル */
 .button, input[type="submit"] {

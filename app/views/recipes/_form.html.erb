@@ -20,6 +20,17 @@
     <%= form.text_area :description %>
   </div>
 
+  <div>
+    <%= form.label :image, "画像" %>
+    <%= form.file_field :image, id: 'image-preview', direct_upload: true %>
+    <div id="preview-container" style="margin-top: 20px;">
+      <% if recipe.image.attached? %>
+        <%= image_tag recipe.image, id: 'image-preview-tag', style: 'max-width: 200px;' %>
+      <% end %>
+    </div>
+  </div>
+
+
   <h2>材料と分量</h2>
   <table id="ingredients_table">
     <thead>
@@ -47,10 +58,6 @@
     <%= form.text_area :instructions %>
   </div>
 
-  <div>
-    <%= form.label :image, "画像" %>
-    <%= form.file_field :image %>
-  </div>
 
 <div class="food-group-container">
   <div class="food-group-checkboxes">
@@ -71,7 +78,6 @@
     <%= image_tag '3-color-food-groups.jpg', alt: '3色の食品群' %>
   </div>
 </div>
-
 
 
   <div>

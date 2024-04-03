@@ -1,9 +1,9 @@
 <header class="header">
     <div class="user-menu">
         <% if user_signed_in? %>
-            <%= link_to 'プロフィール', edit_user_registration_path %>
-            <%= link_to 'レシピ投稿', new_recipe_path %>
-            <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
+            <%= link_to 'プロフィール', edit_user_registration_path, class: "menu-link"  %>
+            <%= link_to 'レシピ投稿', new_recipe_path, class: "menu-link"  %>
+            <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: "menu-link"  %>
         <% else %>
             <%= link_to 'ログイン', new_user_session_path %>
         <% end %>
