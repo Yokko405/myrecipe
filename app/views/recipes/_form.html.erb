@@ -21,7 +21,7 @@
   </div>
 
   <div>
-    <%= form.label :image, "画像" %>
+    <%= form.label :image, "画像", for: 'image-preview'  %>
     <%= form.file_field :image, id: 'image-preview', direct_upload: true %>
     <div id="preview-container" style="margin-top: 20px;">
       <% if recipe.image.attached? %>
@@ -74,12 +74,12 @@
     </div>
   </div>
   <div class="food-group-image">
-    <%= image_tag '3-color-food-groups.jpg', alt: '3色の食品群' %>
+    <%= image_tag '3-color-food-groups.png', alt: '3色の食品群' %>
   </div>
 </div>
 
 
-  <div>
+  <div class="return-button">
     <%= form.submit %>
   </div>
 <% end %>

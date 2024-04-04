@@ -10,17 +10,6 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <header class="header main-header">
-    <div class="container">
-      <div class="title-and-icon">
-        <%= link_to "マイレシピアプリ", root_path, class: "logo" %>
-        <div class="header-icon">
-          <%= image_tag 'myrecipeicon.jpg', alt: 'アイコン' %>
-        </div>
-      </div>
-    </div>
-  </header>
-
   <body>
     <% flash.each do |type, message| %>
       <div class="flash <%= type %>">
@@ -28,6 +17,24 @@
       </div>
     <% end %>
 
-    <%= yield %>
+    <header class="header main-header">
+      <div class="container">
+        <div class="title-and-icon">
+          <%= link_to "マイレシピアプリ", root_path, class: "logo" %>
+          <div class="header-icon">
+            <%= image_tag 'myrecipeicon.png', alt: 'アイコン' %>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  <%= yield %>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="footer-text">&copy; <%= Time.now.year %> MyRecipeApp. All rights reserved.</p>
+      </div>
+    </footer>
+
   </body>
 </html>
