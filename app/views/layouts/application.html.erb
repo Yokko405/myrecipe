@@ -10,11 +10,16 @@
     <%= javascript_importmap_tags %>
   </head>
 
-<header class="header">
-  <div class="container">
-    <%= link_to "マイレシピアプリ", root_path, class: "logo" %>
-  </div>
-</header>
+  <header class="header main-header">
+    <div class="container">
+      <div class="title-and-icon">
+        <%= link_to "マイレシピアプリ", root_path, class: "logo" %>
+        <div class="header-icon">
+          <%= image_tag 'myrecipeicon.jpg', alt: 'アイコン' %>
+        </div>
+      </div>
+    </div>
+  </header>
 
   <body>
     <% flash.each do |type, message| %>
