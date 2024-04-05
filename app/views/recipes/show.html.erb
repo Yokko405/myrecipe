@@ -1,39 +1,56 @@
-  <h1><%= @recipe.title %></h1>
-  <p><%= @recipe.description %></p>
-
-<div class="recipe-container">
-  <% if @recipe.image.attached? %>
-      <%= image_tag @recipe.image, class: "recipe-image" %>
-  <% else %>
-      <%= image_tag 'default-salad.png', alt: 'サンプルサラダ画像', class: "recipe-image"  %>
-  <% end %>
+<div class="page-container">
+  <!-- レシピタイトル -->
+  <h1 class="title"><%= @recipe.title %></h1>
 
 
-<div class="field">
-  <h3>食品群</h3>
-  <% ColorGroup.all.each do |color_group| %>
-    <%= check_box_tag "color_group_ids_#{color_group.id}",
-      color_group.id, @recipe.color_group_ids.include?(color_group.id.to_s), disabled: true %>
-    <%= label_tag "color_group_ids_#{color_group.id}", color_group.name %><br>
-  <% end %>
-</div>
-
-<h2>材料</h2>
-<ul>
-  <% @recipe.ingredients.each do |ingredient| %>
-    <li><%= ingredient.name %></li> - <%= ingredient.quantity %></li>
-  <% end %>
-</ul>
-
-<h2>調理手順</h2>
-<p><%= @recipe.instructions %></p>
-
-<h3>不足している栄養素を補うおすすめのレシピ</h3>
-<% @suggested_recipes.each do |recipe| %>
-  <div>
-    <%= link_to recipe.title, recipe_path(recipe) %>
+  <div class="container">
+    <!-- レシピ画像 -->
+    <% if @recipe.image.attached? %>
+        <%= image_tag @recipe.image, class: "recipe-image" %>
+    <% else %>
+        <%= image_tag 'default-salad.png', alt: 'サンプルサラダ画像', class: "recipe-image"  %>
+    <% end %>
+    <!-- レシピ説明 -->
+    <p><%= @recipe.description %></p>
   </div>
-<% end %>
 
-<%= link_to '編集', edit_recipe_path(@recipe) %>
-<%= link_to '一覧に戻る', recipes_path, class: 'btn btn-primary' %>
+  <!-- 食品群セクション -->
+  <div class="container">
+    <h3>食品群</h3>
+    <% ColorGroup.all.each do |color_group| %>
+      <%= check_box_tag "color_group_ids_#{color_group.id}",
+        color_group.id, @recipe.color_group_ids.include?(color_group.id.to_s), disabled: true %>
+      <%= label_tag "color_group_ids_#{color_group.id}", color_group.name %><br>
+    <% end %>
+  </div>
+
+  <!-- 材料リスト -->
+  <div class="container">
+    <h2>材料</h2>
+    <ul class="no-list-style">
+      <% @recipe.ingredients.each do |ingredient| %>
+        <li><%= ingredient.name %> - <%= ingredient.quantity %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="container">
+    <h2>調理手順</h2>
+    <p><%= @recipe.instructions %></p>
+  </div>
+
+  <div class="container">
+    <h3>不足している栄養素を補うおすすめのレシピ</h3>
+    <div class="recipes-container">
+      <% @suggested_recipes.each do |recipe| %>
+        <div class="recipe-item">
+          <%= link_to recipe.title, recipe_path(recipe) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- 編集ボタンと一覧に戻るボタン -->
+  <%= link_to '編集', edit_recipe_path(@recipe) %></br>
+  <%= link_to '一覧に戻る', recipes_path %>
+</div>
