@@ -1,6 +1,6 @@
 <div class="page-container">
-<h2 class="title">Edit <%= resource_name.to_s.humanize %></h2>
-
+  <h2 class="title">Edit <%= resource_name.to_s.humanize %></h2>
+</div>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-field-wrapper' }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 

@@ -21,9 +21,9 @@
       <div class="container">
         <div class="title-and-icon">
           <%= link_to "マイレシピアプリ", root_path, class: "logo" %>
-          <div class="header-icon">
+          <%= link_to root_path, class: "header-icon" do %>
             <%= image_tag 'myrecipeicon.png', alt: 'アイコン' %>
-          </div>
+          <% end %>
         </div>
       </div>
     </header>

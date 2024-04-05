@@ -9,15 +9,17 @@
         <% end %>
     </div>
     <%= form_with url: recipes_path, method: :get, class: 'form-field-wrapper' do |form| %>
-        <div class="search-field">
+        <div class="container">
             <%= form.label :keyword, 'キーワード' %>
             <%= form.text_field :keyword %>
         </div>
-        <div class="select-field">
+        <div class="container">
             <%= form.label :color_group_id, 'カテゴリー' %>
             <%= form.select :color_group_id, ColorGroup.all.map { |c| [c.name, c.id] }, include_blank: true %>
         </div>
-        <%= form.submit '検索', class: 'button' %>
+        <div class="return-button">
+            <%= form.submit '検索', class: 'button' %>
+        </div>
     <% end %>
 </header>
 <h1>レシピ一覧</h1>

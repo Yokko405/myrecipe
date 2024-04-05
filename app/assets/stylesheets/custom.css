@@ -60,10 +60,72 @@ body {
 }
 
 .container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;/*  最大幅
+  margin: 20 auto;   /* 上下のマージンを指定して中央揃え */
+  padding: 0 15px; /* コンテナの内側の余白 */
+  /* background-color: #fff; */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
 }
+
+/* 入力フィールド全体のスタイルを統一 */
+.container input[type="text"],
+.container input[type="file"],
+.container textarea,
+.container select {
+  width: 100%;
+  /* max-width: 1200px; */
+  padding: 8px;
+  margin: 5px 0 20px 0;
+  border: 2px solid #CBE989; /* ボーダーにアイコンの緑色を使用 */
+  border-radius: 5px;
+  box-sizing: border-box; /* サイズ計算をborder-boxモデルで統一 */
+}
+
+/* テーブルスタイル */
+#ingredients_table {
+  width: 100%;
+  margin-bottom: 20px; /* 余白を設定 */
+  border-collapse: collapse; /* ボーダーのスタイルを設定 */
+}
+
+#ingredients_table th,
+#ingredients_table td {
+  padding: 8px; /* パディングを設定 */
+  border: 1px solid #ddd; /* ボーダーを設定 */
+}
+
+/* カラーグループの選択肢表示 */
+.field h3 {
+  color: #333;
+}
+
+/* フードグループコンテナスタイル */
+.food-group-container {
+  display: flex;
+  justify-content:left; /* 余白を左寄せ→3色食品群画像をチェックボックスに寄せるため */
+  margin-bottom: 20px;
+}
+
+.food-group-checkboxes {
+  flex-grow: 0;
+  padding-right: 10px; /* 右側の余白を減らします */
+}
+
+.food-group-image {
+  flex-grow: 0;
+  padding-left: 100px; /* 左側の余白を減らします */
+  max-width: 400px; /* 画像の最大幅を制限します */
+}
+
+.food-group-image img {
+  display: block;
+  width: auto; /* 画像の幅を親要素に合わせて調整します */
+  max-height: 300px;
+}
+
+
 
 
 .header .user-menu {
@@ -165,6 +227,7 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   cursor: pointer;
   transition: background-color 0.3s; /* 色の変化にアニメーションを追加 */
+  margin-bottom: 10px;
 }
 
 
@@ -175,20 +238,30 @@ h1, h2, h3, h4, h5, h6 {
 /* 入力フィールドのスタイル */
 
 .form-field-wrapper {
-  max-width: 500px; /* 適切な最大幅に設定 */
+  max-width: 1200px; /* 適切な最大幅に設定 */
   margin: 0 auto; /* 中央揃え */
 }
 
 .form-field-wrapper .field label {
-  margin-bottom: 0.2em; /* ラベルと入力フィールドの間に余白を設ける */
+  width: 100%; /* フル幅に設定 */
+  margin-bottom: 1em; /* ラベルと入力フィールドの間に余白を設ける */
 }
 
+/* 各入力フィールドのスタイル */
 .form-field-wrapper .field {
+  width: 100%; /* フル幅に設定 */
+  margin-bottom: 1em; /* フィールド間の余白を適切に設定  */
   text-align: left;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 1em; /* フィールド間の余白を適切に設定 */
+}
+
+/* テキスト入力フィールドとセレクトボックスのスタイル */
+.form-field-wrapper .form-input, .form-field-wrapper select {
+  padding: 8px; /* パディングを設定 */
+  margin-bottom: 1em; /* 下に余白を設定 */
+  border: 2px solid #CBE989; /* ボーダーを設定 */
 }
 
 .form-field-wrapper .form-input {
@@ -213,20 +286,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-input[type="text"], input[type="file"], textarea, select {
-  width: 100%;
-  padding: 8px;
-  margin: 5px 0 20px 0;
-  border: 2px solid #CBE989; /* ボーダーにアイコンの緑色を使用 */
-  border-radius: 5px;
-  box-sizing: border-box; /* サイズ計算をborder-boxモデルで統一 */
-}
-
 /* 入力フィールドフォーカス時のスタイル */
 input[type="text"]:focus, input[type="file"]:focus, textarea:focus, select:focus {
   border: 2px solid #A9CD68; /* アプリのテーマに合わせたボーダー色を設定 */
   outline: none; /* デフォルトのアウトラインを削除 */
 }
+
+/* deviseセッションのemailとpasswordスタイル */
+input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0 20px 0;
+  border: 2px solid #CBE989;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+input[type="email"]:focus, input[type="password"]:focus {
+  border: 2px solid #A9CD68;
+  outline: none;
+}
+
 
 /* フラッシュメッセージ */
 .flash {
@@ -245,32 +325,25 @@ input[type="text"]:focus, input[type="file"]:focus, textarea:focus, select:focus
   background-color:#D9534F; /* 警告メッセージはアイコンの赤色に合わせる */
 }
 
-/* カラーグループの選択肢表示 */
-.field h3 {
-  color: #333;
-}
-
-.food-group-container {
-  display: flex;
-  justify-content:left; /* 余白を左側に寄せます */
+/* エラーメッセージスタイル */
+.error-messages {
+  background-color: #ffd2d2; /* エラーメッセージの背景色 */
+  color: #d8000c; /* エラーメッセージのテキスト色 */
+  border: 1px solid #ffbaba;
+  border-radius: 5px;
+  padding: 10px;
   margin-bottom: 20px;
 }
 
-.food-group-checkboxes {
-  flex-grow: 0;
-  padding-right: 10px; /* 右側の余白を減らします */
-}
 
-.food-group-image {
-  flex-grow: 0;
-  padding-left: 100px; /* 左側の余白を減らします */
-  max-width: 400px; /* 画像の最大幅を制限します */
-}
 
-.food-group-image img {
-  display: block;
-  width: auto; /* 画像の幅を親要素に合わせて調整します */
-  max-height: 300px;
+/* 追加 */
+.recipe-form {
+  background-color: #fff; /* 背景色 */
+  padding: 20px; /* 内側の余白 */
+  border-radius: 8px; /* 角の丸み */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 影をつける */
+  margin: 20px auto; /* 上下の余白と中央揃え */
 }
 
 .return-button {
@@ -282,7 +355,7 @@ input[type="text"]:focus, input[type="file"]:focus, textarea:focus, select:focus
   color: #333; /* テキストの色はヘッダーと同じく暗めの色 */
   padding: 10px 0;
   text-align: center;
-  width: 100vw;
+  width: 100%;
 }
 
 .footer-text {
