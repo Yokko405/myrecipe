@@ -8,7 +8,7 @@
             <%= link_to 'ログイン', new_user_session_path %>
         <% end %>
     </div>
-    <%= form_with url: recipes_path, method: :get, class: 'form-field-wrapper' do |form| %>
+    <%= form_with url: recipes_path, method: :get do |form| %>
         <div class="container">
             <%= form.label :keyword, 'キーワード' %>
             <%= form.text_field :keyword %>
