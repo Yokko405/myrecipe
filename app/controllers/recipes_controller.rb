@@ -4,17 +4,17 @@ class RecipesController < ApplicationController
 
   # GET /recipes
   def index
-    if params[:keyword].present? || params[:color_group_id].present?
-      @recipes = Recipe.search(params[:keyword], params[:color_group_id])
-    else
-      @recipes = Recipe.all
-    end
+    @recipes = if params[:keyword].present? || params[:color_group_id].present?
+                 Recipe.search(params[:keyword], params[:color_group_id])
+               else
+                 Recipe.all
+               end
   end
 
   # GET /recipes/1
   def show
     @missing_nutrients = @recipe.missing_nutrient_categories
-  @suggested_recipes = Recipe.suggest_recipes(@missing_nutrients)
+    @suggested_recipes = Recipe.suggest_recipes(@missing_nutrients)
   end
 
   # GET /recipes/new
@@ -23,7 +23,7 @@ class RecipesController < ApplicationController
       @recipe = Recipe.new
       @recipe.ingredients.build # 材料の空オブジェクトを生成
     else
-      redirect_to root_path, alert: "ログインが必要です。"
+      redirect_to root_path, alert: 'ログインが必要です。'
     end
   end
 
@@ -56,39 +56,39 @@ class RecipesController < ApplicationController
   def destroy
     if @recipe.destroy
       flash[:notice] = 'レシピが正常に削除されました。'
-      redirect_to recipes_url
     else
       flash[:alert] = 'レシピの削除に失敗しました。'
-      redirect_to recipes_url
     end
+    redirect_to recipes_url
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions
-    def set_recipe
-      @recipe = Recipe.find(params[:id])
-    end
 
-    def check_owner
-      unless @recipe.user == current_user
-        redirect_to root_path, alert: 'この操作を実行する権限がありません。'
-      end
-    end
+  # Use callbacks to share common setup or constraints between actions
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
 
-    def suggest_recipes(missing_nutrients)
-      # 不足している栄養カテゴリーに対応するレシピを検索
-      Recipe.where('color_group_ids @> ARRAY[?]::integer[]', missing_nutrients).limit(5)
-    end
+  def check_owner
+    return if @recipe.user == current_user
 
-    # Only allow a list of trusted parameters through
-    def recipe_params
-      params.require(:recipe).permit(
-        :title,
-        :description,
-        :instructions,
-        :image,
-        { color_group_ids: [] },
-        ingredients_attributes: [:id, :name, :quantity, :_destroy]
-      ).merge(user_id: current_user.id)
-    end
+    redirect_to root_path, alert: 'この操作を実行する権限がありません。'
+  end
+
+  def suggest_recipes(missing_nutrients)
+    # 不足している栄養カテゴリーに対応するレシピを検索
+    Recipe.where('color_group_ids @> ARRAY[?]::integer[]', missing_nutrients).limit(5)
+  end
+
+  # Only allow a list of trusted parameters through
+  def recipe_params
+    params.require(:recipe).permit(
+      :title,
+      :description,
+      :instructions,
+      :image,
+      { color_group_ids: [] },
+      ingredients_attributes: [:id, :name, :quantity, :_destroy]
+    ).merge(user_id: current_user.id)
+  end
 end

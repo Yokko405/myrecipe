@@ -15,25 +15,23 @@ RSpec.describe Recipe, type: :model do
     end
 
     context '新規登録できないとき' do
-
       it 'nameがないと登録できない' do
-        @ingredient.name = ""
+        @ingredient.name = ''
         @ingredient.valid?
         expect(@ingredient.errors[:name]).to include("can't be blank")
       end
 
       it 'quantityがないと登録できない' do
-        @ingredient.quantity = ""
+        @ingredient.quantity = ''
         @ingredient.valid?
         expect(@ingredient.errors[:quantity]).to include("can't be blank")
       end
 
       it 'recipeが紐づいてないと登録できない' do
-        @ingredient.recipe_id = ""
+        @ingredient.recipe_id = ''
         @ingredient.valid?
-        expect(@ingredient.errors[:recipe]).to include("must exist")
+        expect(@ingredient.errors[:recipe]).to include('must exist')
       end
     end
-
   end
 end
