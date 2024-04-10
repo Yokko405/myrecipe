@@ -36,8 +36,10 @@
                             <%= link_to image_tag('default-salad.png', alt: 'サンプルサラダ画像'), recipe_path(recipe) %>
                         <% end %>
                         <h3><%= link_to recipe.title, recipe %></h3>
-                        <%= link_to '編集', edit_recipe_path(recipe) %>
-                        <%= link_to '削除', recipe_path(recipe), method: :delete, data: { turbo_confirm: '本当に削除しますか？', turbo_method: :delete } %>
+                        <% if current_user == recipe.user %>
+                            <%= link_to '編集', edit_recipe_path(recipe) %>
+                            <%= link_to '削除', recipe_path(recipe), method: :delete, data: { turbo_confirm: '本当に削除しますか？', turbo_method: :delete } %>
+                        <% end %>
                     </div>
                 </li>
             <% end %>

@@ -72,7 +72,9 @@
   <div class="container">
     <!-- 編集ボタンと一覧に戻るボタン -->
     <div class="recipe-form">
-      <%= link_to '編集', edit_recipe_path(@recipe) %></br>
+      <% if current_user == @recipe.user %>
+        <%= link_to '編集', edit_recipe_path(@recipe) %></br>
+      <% end %>
       <%= link_to '一覧に戻る', recipes_path %>
     </div>
   </div>
