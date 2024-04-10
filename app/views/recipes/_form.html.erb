@@ -32,28 +32,29 @@
       </div>
     </div>
   </div>
-
-  <h2>材料と分量</h2>
-  <table id="ingredients_table">
-    <thead>
-      <tr>
-        <th>材料</th>
-        <th>分量</th>
-        <th>削除</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= form.fields_for :ingredients do |ingredient_form| %>
+  <div class="recipe-form">
+    <h2>材料と分量</h2>
+    <table id="ingredients_table">
+      <thead>
         <tr>
-          <td><%= ingredient_form.text_field :name, placeholder: "材料名" %></td>
-          <td><%= ingredient_form.text_field :quantity, placeholder: "分量" %></td>
-          <td><%= link_to '削除', '#', class: "remove_fields" %></td>
+          <th>材料</th>
+          <th>分量</th>
+          <th>削除</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <%= form.fields_for :ingredients do |ingredient_form| %>
+          <tr>
+            <td><%= ingredient_form.text_field :name, placeholder: "材料名" %></td>
+            <td><%= ingredient_form.text_field :quantity, placeholder: "分量" %></td>
+            <td><%= link_to '削除', '#', class: "remove_fields" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-  <%= link_to '材料を追加', '#', id: "add_ingredient", class: "button" %>
+    <%= link_to '材料を追加', '#', id: "add_ingredient", class: "button" %>
+  </div>
 
   <div>
     <%= form.label :instructions, "作り方" %>

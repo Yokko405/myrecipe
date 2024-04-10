@@ -34,8 +34,8 @@
 
   <div class="container">
     <!-- 材料リスト -->
-    <div class="container">
-      <h2>材料</h2>
+    <div class="recipe-form">
+      <h2>材料と分量</h2>
       <ul class="no-list-style">
         <% @recipe.ingredients.each do |ingredient| %>
           <li><%= ingredient.name %> - <%= ingredient.quantity %></li>
@@ -45,7 +45,6 @@
   </div>
 
   <div class="container">
-    <h2>調理手順</h2>
     <div class="recipe-form">
       <h2>調理手順</h2>
       <p><%= @recipe.instructions %></p>
