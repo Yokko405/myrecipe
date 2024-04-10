@@ -60,7 +60,7 @@ body {
 }
 
 .container {
-  width: 100%;
+  width: auto;
   max-width: 1200px;
   margin: 20px auto;
   padding: 0 15px;
@@ -169,6 +169,13 @@ ul.no-list-style {
   box-sizing: border-box;
   /* display: flex; を削除 */
 }
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 0 10px; /* 小さい画面では左右の余白を少なくする */
+  }
+}
+
 
 @media (min-width: 992px) {
   .container .recipe-list > li {
