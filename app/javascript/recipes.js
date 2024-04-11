@@ -60,19 +60,27 @@ document.addEventListener('turbo:load', () => {
   const inputElement = document.getElementById('image-preview');
   inputElement.addEventListener('change', function() {
     const previewContainer = document.getElementById('preview-container');
-    const previewImage = document.getElementById('image-preview-tag');
+    let previewImage = document.getElementById('image-preview-tag');
     const file = inputElement.files[0];
 
     if (file) {
       const reader = new FileReader();
       reader.onload = function(e) {
+        // previewImageが存在しなければ新しく作成
+        if (!previewImage) {
+          previewImage = document.createElement('img');
+          previewImage.id = 'image-preview-tag';
+          previewImage.style.maxWidth = '200px';
+          previewContainer.appendChild(previewImage);
+        }
         previewImage.src = e.target.result;
         previewImage.style.display = 'block';
       }
       reader.readAsDataURL(file);
     } else {
-      previewImage.style.display = 'none';
-      previewImage.src = '';
+      if (previewImage) {
+        previewImage.style.display = 'none';
+      }
     }
   });
 });

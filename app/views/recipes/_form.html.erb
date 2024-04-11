@@ -84,6 +84,6 @@
 
 
   <div class="return-button">
-    <%= form.submit %>
+    <%= form.submit recipe.new_record? ? "レシピを登録" : "レシピを更新" %>
   </div>
 <% end %>
