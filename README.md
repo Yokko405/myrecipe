@@ -21,6 +21,7 @@ https://myrecipe-9een.onrender.com/
 
 ## 実装した機能
 - レシピ投稿機能
+- レシピ検索機能
 - 栄養素に基づいたレシピ提案機能
 - ユーザー登録・ログイン機能
 
@@ -28,8 +29,9 @@ https://myrecipe-9een.onrender.com/
 [![Image from Gyazo](https://i.gyazo.com/9f866fa3a8c9013d0068fb6023dbcd17.png)](https://gyazo.com/9f866fa3a8c9013d0068fb6023dbcd17)
 
 ## 実装予定の機能
-- レシピに対するユーザーの評価機能
-- 栄養素に関する詳細情報の表示
+- マイページ機能(4/20実装完了予定)
+- お気に入り機能(5/1実装完了予定)
+- 作成回数(5/5実装完了予定)
 
 ## データベース設計
 [![Image from Gyazo](https://i.gyazo.com/fd7bebaf4bec6f5e826ae433ab6bafe6.png)](https://gyazo.com/fd7bebaf4bec6f5e826ae433ab6bafe6)
@@ -84,25 +86,27 @@ Active Storageの設定を適切に行うことで、画像は自動的に関連
 - 言語: Ruby, JavaScript
 - フレームワーク: Ruby on Rails
 - フロントエンド: HTML, CSS
-- データベース: SQLite (開発), PostgreSQL (本番)
+- データベース: MySQL (開発), PostgreSQL (本番)
 
 ## ローカルでの動作方法
 以下のコマンドをターミナルで実行して、アプリケーションをセットアップします：
-$ git clone [リポジトリURL]
-$ cd マイレシピアプリ
+```bash
+$ git clone https://github.com/Yokko405/myrecipe.git
+$ cd myrecipe
 $ bundle install
 $ yarn install
 $ rails db:create db:migrate db:seed
 $ rails server
-
+```
 
 ## 工夫したポイント
 - ユーザーの栄養バランスを視覚化し、不足栄養素を直感的に理解できるデザインを採用。
 - 栄養バランスに基づいたレシピ提案機能を実装し、ユーザーの食生活の改善をサポート。
 
 ## 改善点
-- レシピの検索機能をより詳細にして、ユーザーが求めるレシピを容易に見つけられるようにする。
-- 栄養素のデータベースを拡充して、より多様な栄養バランスの提案を可能にする。
+マイページ機能を追加して、ユーザーが投稿したレシピ、お気に入りに追加したレシピ、
+そして各レシピの作成回数を一覧で確認できるようにすることで、ユーザー体験を向上させます。
+これにより、ユーザーは自分の活動履歴を容易に追跡し、お気に入りのレシピに簡単にアクセスできるようになります。
 
 ## 制作時間
 約25時間
