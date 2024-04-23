@@ -1,8 +1,31 @@
-<h1>マイページ</h1>
+<header class="header recipes-header">
+    <div class="user-menu">
+        <%= link_to 'プロフィール', edit_user_registration_path, class: "menu-link" %>
+        <%= link_to 'レシピ投稿', new_recipe_path, class: "menu-link" %>
+        <%= link_to 'マイレシピ', mypage_path, class: "menu-link" %>
+        <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: "menu-link" %>
+    </div>
+</header>
 
-<h2>投稿したレシピ</h2>
-<ul>
-  <% @recipes.each do |recipe| %>
-    <li><%= recipe.title %> - <%= recipe.description %></li>
-  <% end %>
-</ul>
+<div class="page-container">
+    <h1>マイレシピ</h1> <!-- マイページのタイトル -->
+    <div class="container">
+        <ul class="recipe-list">
+            <% @recipes.each do |recipe| %>
+                <li>
+                    <div class="recipe-item">
+                        <% if recipe.image.attached? %>
+                            <%= link_to image_tag(recipe.image), recipe_path(recipe) %>
+                        <% else %>
+                            <%= link_to image_tag('default-salad.png', alt: 'サンプルサラダ画像'), recipe_path(recipe) %>
+                        <% end %>
+                        <h3><%= link_to recipe.title, recipe %></h3>
+                        <!-- 自分のレシピに対して編集・削除リンクを表示 -->
+                        <%= link_to '編集', edit_recipe_path(recipe) %>
+                        <%= link_to '削除', recipe_path(recipe), method: :delete, data: { turbo_confirm: '本当に削除しますか？', turbo_method: :delete } %>
+                    </div>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+</div>
