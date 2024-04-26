@@ -1,14 +1,14 @@
 <%= form_with(model: recipe, local: true, html: { class: 'container' }) do |form| %>
   <% if recipe.errors.any? %>
-    <div>
-      <h2><%= pluralize(recipe.errors.count, "error") %> が検出されました：</h2>
-      <ul>
-        <% recipe.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div>
+    <h2><%= pluralize(recipe.errors.count, "error") %> が検出されました：</h2>
+    <ul>
+      <% recipe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
   <div class="recipe-form">
     <div>
