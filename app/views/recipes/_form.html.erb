@@ -70,7 +70,7 @@
         <%= form.check_box :color_group_ids, {
           multiple: true,
           id: "color_group_ids_#{color_group.id}",
-          checked: @recipe.color_group_ids.include?(color_group.id.to_s)
+          checked: recipe.color_group_ids.include?(color_group.id.to_s)
         }, color_group.id, nil %>
         <%= label_tag "color_group_ids_#{color_group.id}", color_group.name %><br>
       <% end %>
